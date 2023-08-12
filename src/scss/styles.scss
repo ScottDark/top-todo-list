@@ -1,6 +1,7 @@
 // Import all of Bootstrap's CSS
 @import "bootstrap/scss/bootstrap";
 
+// Project default
 body,
 #content {
   min-height: 100vh;
@@ -14,3 +15,30 @@ body,
   margin: 0px;
   padding: 0px;
 }
+
+// Project default END
+
+// Variables
+$contentChildSelector: "#content > div";
+
+@mixin gridSize {
+  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-rows: 25% 25% 25% 25%;
+}
+
+// Variable END
+
+// Layout of grid
+#content {
+  @include gridSize;
+}
+
+#content,
+#{$contentChildSelector} {
+  display: grid;
+}
+
+// Place sections on content grid
+// #header {
+//   grid-row: ;
+// }
