@@ -55,18 +55,6 @@ module.exports = (env, options) => {
           test: /\.(png|svg|jpg|jpeg|gif)$/i,
           type: "asset/resource",
         },
-        {
-          test: /\.(scss)$/,
-          use: [
-            {
-              loader: "ignore-loader",
-              options: {
-                resourceQuery:
-                  /Deprecation Passing percentage units to the global abs\(\) function is deprecated/,
-              },
-            },
-          ],
-        },
       ],
     },
   };
