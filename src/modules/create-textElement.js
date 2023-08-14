@@ -4,14 +4,14 @@ export default function createTextElement(
   elementToCreate,
   ...elementClassArr
 ) {
-  const createH1Element = document.createElement(elementToCreate);
+  const createNewElement = document.createElement(elementToCreate);
   const textNode = document.createTextNode(txtMsg);
 
-  createH1Element.appendChild(textNode);
+  createNewElement.appendChild(textNode);
 
   for (const arg of elementClassArr) {
-    createH1Element.classList.add(arg);
+    createNewElement.classList.add(arg);
   }
 
-  return createH1Element;
+  return createNewElement;
 }
