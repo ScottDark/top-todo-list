@@ -1,6 +1,29 @@
 // Import all of Bootstrap's CSS
 @import "bootstrap/scss/bootstrap";
 
+// Media queries for responsive text
+html {
+  font-size: 16px;
+}
+
+@media (max-width: 600px) {
+  html {
+    font-size: calc(16px + 0.5vw);
+  }
+}
+
+@media (min-width: 601px) and (max-width: 1200px) {
+  html {
+    font-size: calc(16px + 0.3vw);
+  }
+}
+
+@media (min-width: 1201px) {
+  html {
+    font-size: 20px;
+  }
+}
+
 // Project default
 body,
 #content {
