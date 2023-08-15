@@ -1,13 +1,13 @@
 import createTextElement from "../modules/create-textElement";
-import saveEditableContent from "../modules/save-editablecontent";
+import getEditableContent from "../modules/get-editablecontent";
 
 export default function buildHeader() {
   const selectHeader = document.querySelector("#header");
 
-  let projectName = createTextElement("Project Name", "h3");
-  projectName.setAttribute("contenteditable", "true");
+  let projectNameElement = createTextElement("Project Name", "h3");
+  projectNameElement.setAttribute("contenteditable", "true");
 
-  let userEnteredProjectName = saveEditableContent(projectName);
+  getEditableContent("projectNameData", projectNameElement);
 
   // Create date and prio text.
   let projectDateCreated = createTextElement(
@@ -22,7 +22,7 @@ export default function buildHeader() {
     "project-priority"
   );
 
-  selectHeader.appendChild(projectName);
+  selectHeader.appendChild(projectNameElement);
   selectHeader.appendChild(projectDateCreated);
   selectHeader.appendChild(projectPrioLevel);
 }
