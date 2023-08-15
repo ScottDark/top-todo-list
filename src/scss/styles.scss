@@ -68,7 +68,8 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+p {
   margin: 0;
 }
 
@@ -148,7 +149,7 @@ $contentChildSelector: "#content > div";
 // Sidebar section
 #sidebar {
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 5% 10% 5% 1fr;
+  grid-template-rows: 8% 2% 10% 5% 1fr;
   justify-content: space-evenly;
 }
 
@@ -159,30 +160,54 @@ $contentChildSelector: "#content > div";
   padding: 1rem;
 }
 
-.new-project-button {
+.page-break {
   grid-column: 1 / 5;
-  grid-row: 2 / 3;
-  place-self: center;
 }
 
-.sort-item-button-projects {
+.new-project-button {
   grid-column: 1 / 5;
   grid-row: 3 / 4;
   place-self: center;
 }
 
-.project-container {
+.sort-item-button-projects {
   grid-column: 1 / 5;
   grid-row: 4 / 5;
+  place-self: center;
+}
+
+.project-container {
+  grid-column: 1 / 5;
+  grid-row: 5 / 6;
 
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: auto;
+  grid-auto-rows: 2.5rem;
   overflow: auto;
 
   border-top: solid 2px white;
   margin: 1rem;
+  padding: 5px;
 }
+
+// Project container and item section
+.project-item {
+  display: grid;
+  grid-template-columns: 10% 1fr 10% 10%;
+  grid-row: span 1;
+  grid-column: span 4;
+}
+
+.bullet-point {
+  grid-column: 1 / 2;
+  place-self: center;
+}
+
+.project-name {
+  grid-column: 2 / 3;
+  align-self: center;
+  justify-self: start;
+}
+// Project container and item section END
 
 // Sidebar END
 

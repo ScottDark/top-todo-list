@@ -7,7 +7,7 @@ export default function buildToolbar() {
     "button",
     "create-new-item-button",
     "btn",
-    "btn-primary"
+    "btn-success"
   );
 
   let createSortBy = createTextElement(
