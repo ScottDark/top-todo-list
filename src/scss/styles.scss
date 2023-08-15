@@ -63,7 +63,12 @@ body,
 }
 
 // Text margin was giving me extra margin here had to manually set to 0.
-h3 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin: 0;
 }
 
@@ -123,7 +128,22 @@ $contentChildSelector: "#content > div";
   place-items: center;
 }
 
-// Footer
+// Toolbar section
+#toolbar {
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  justify-content: space-evenly;
+}
+
+.create-new-item-button {
+  place-self: center;
+}
+
+.sort-item-button {
+  place-self: center;
+}
+
+// Footer section
 .github-link {
   text-decoration: none;
 }
