@@ -1,5 +1,6 @@
 import createTextElement from "./create-textElement";
 import getEditableContent from "./get-editablecontent";
+import createPriorityDropdown from "./create-priority-dropdown";
 
 export default function createProjectItem() {
   // Project Container
@@ -20,6 +21,11 @@ export default function createProjectItem() {
   );
   newProjectEditableTitle.setAttribute("contenteditable", "true");
   selectProjectItem.appendChild(newProjectEditableTitle);
-
   getEditableContent("projectNameData", newProjectEditableTitle);
+
+  // Create dropdown priority
+  let newDivDropdown = createTextElement("", "div", "dropdown");
+  selectProjectItem.appendChild(newDivDropdown);
+  const selectDivDropDown = document.querySelector(".dropdown");
+  createPriorityDropdown(selectDivDropDown);
 }
