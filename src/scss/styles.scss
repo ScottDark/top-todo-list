@@ -78,7 +78,7 @@ h6 {
 $contentChildSelector: "#content > div";
 
 @mixin gridSize {
-  grid-template-columns: minmax(125px, 20%) 1fr 1fr 1fr;
+  grid-template-columns: 25% 1fr 1fr 1fr;
   grid-template-rows: 10% 7% 78% 5%;
 }
 
@@ -142,6 +142,49 @@ $contentChildSelector: "#content > div";
 .sort-item-button {
   place-self: center;
 }
+
+// Toolbar END
+
+// Sidebar section
+#sidebar {
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 5% 10% 5% 1fr;
+  justify-content: space-evenly;
+}
+
+.project-overview-title {
+  grid-column: 1 / 5;
+  grid-row: 1 / 2;
+  align-items: center;
+  padding: 1rem;
+}
+
+.new-project-button {
+  grid-column: 1 / 5;
+  grid-row: 2 / 3;
+  place-self: center;
+}
+
+.sort-item-button-projects {
+  grid-column: 1 / 5;
+  grid-row: 3 / 4;
+  place-self: center;
+}
+
+.project-container {
+  grid-column: 1 / 5;
+  grid-row: 4 / 5;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto;
+  overflow: auto;
+
+  border-top: solid 2px white;
+  margin: 1rem;
+}
+
+// Sidebar END
 
 // Footer section
 .github-link {

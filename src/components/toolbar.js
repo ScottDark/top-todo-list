@@ -11,7 +11,7 @@ export default function buildToolbar() {
   );
 
   let createSortBy = createTextElement(
-    "Sort by: Date Created",
+    "Sort by: Date",
     "button",
     "sort-item-button",
     "btn",
