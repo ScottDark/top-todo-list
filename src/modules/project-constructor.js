@@ -7,7 +7,7 @@ export default function projectConstructor() {
   this.todoList = [];
 
   const currentDate = new Date();
-  const formattedDate = format(currentDate, "dd-MM-yyyy");
+  const formattedDate = format(currentDate, "MMMM dd, yyyy");
   this.dateCreated = formattedDate;
 
   projectConstructor.prototype.addTodoItem = function (item) {

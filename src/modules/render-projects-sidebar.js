@@ -1,9 +1,12 @@
 import createTextElement from "./create-textElement";
 import getEditableContent from "./get-editablecontent";
 import createPriorityDropdown from "./create-priority-dropdown";
+import { getAllProjects } from "./project-manager";
 
-export default function renderProjectItem(getAllProjects) {
-  console.log(getAllProjects);
+export default function renderProjectItem() {
+  const projects = getAllProjects();
+
+  console.log(projects);
 
   // Project Container
   const selectProjectContainer = document.querySelector(".project-container");
