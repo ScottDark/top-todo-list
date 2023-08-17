@@ -8,6 +8,6 @@ export default function createNewProject() {
   selectNewProjectButton.addEventListener("click", function () {
     new projectConstructor();
 
-    renderProjectsToSidebar(getAllProjects());
+    renderProjectsToSidebar();
   });
 }
