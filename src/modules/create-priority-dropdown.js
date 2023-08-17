@@ -1,7 +1,10 @@
 import createTextElement from "./create-textElement";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
-export default function createPriorityDropdown(selectDivDropDown) {
+export default function createPriorityDropdown(
+  selectDivDropDown,
+  selectProjectName
+) {
   let createDropdownButton = createTextElement(
     "*",
     "button",
@@ -14,6 +17,7 @@ export default function createPriorityDropdown(selectDivDropDown) {
   createDropdownButton.setAttribute("type", "button");
   createDropdownButton.setAttribute("data-bs-toggle", "dropdown");
   createDropdownButton.setAttribute("aria-expanded", "false");
+  createDropdownButton.setAttribute("id", "project-priority-dropdown");
 
   selectDivDropDown.appendChild(createDropdownButton);
 
@@ -29,5 +33,32 @@ export default function createPriorityDropdown(selectDivDropDown) {
     anchor.textContent = prio;
     listItem.appendChild(anchor);
     createDropdownMenu.appendChild(listItem);
+  });
+
+  // Change the default text with the clicked menu item
+  const dropdownButton = document.getElementById("project-priority-dropdown");
+  const dropdownItems = document.querySelectorAll(".dropdown-item");
+
+  dropdownItems.forEach((item) => {
+    item.addEventListener("click", function () {
+      const selectedPrio = item.textContent;
+      dropdownButton.textContent = selectedPrio;
+
+      // Change project name colour based on priority.
+      switch (selectedPrio) {
+        case "1":
+          selectProjectName.style.color = "red";
+          break;
+        case "2":
+          selectProjectName.style.color = "yellow";
+          break;
+        case "3":
+          selectProjectName.style.color = "green";
+          break;
+        default:
+          selectProjectName.style.color = "white";
+          break;
+      }
+    });
   });
 }

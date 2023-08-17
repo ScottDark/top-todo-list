@@ -23,9 +23,11 @@ export default function createProjectItem() {
   selectProjectItem.appendChild(newProjectEditableTitle);
   getEditableContent("projectNameData", newProjectEditableTitle);
 
-  // Create dropdown priority
+  // Add dropdown prio
+  const selectProjectName = document.querySelector(".project-name");
+
   let newDivDropdown = createTextElement("", "div", "dropdown");
   selectProjectItem.appendChild(newDivDropdown);
   const selectDivDropDown = document.querySelector(".dropdown");
-  createPriorityDropdown(selectDivDropDown);
+  createPriorityDropdown(selectDivDropDown, selectProjectName);
 }
