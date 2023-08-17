@@ -1,5 +1,5 @@
 import createTextElement from "../modules/create-textElement";
-import createProjectItem from "../modules/create-project-item";
+import createNewProjectButton from "../modules/create-new-project";
 
 export default function buildSidebar() {
   const selectSidebar = document.querySelector("#sidebar");
@@ -35,5 +35,5 @@ export default function buildSidebar() {
   selectSidebar.appendChild(createSortButton);
   selectSidebar.appendChild(projectContainer);
 
-  createProjectItem();
+  createNewProjectButton();
 }

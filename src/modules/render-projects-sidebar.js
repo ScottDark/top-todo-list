@@ -2,7 +2,7 @@ import createTextElement from "./create-textElement";
 import getEditableContent from "./get-editablecontent";
 import createPriorityDropdown from "./create-priority-dropdown";
 
-export default function createProjectItem() {
+export default function renderProjectItem() {
   // Project Container
   const selectProjectContainer = document.querySelector(".project-container");
   let newProjectItem = createTextElement("", "div", "project-item");
