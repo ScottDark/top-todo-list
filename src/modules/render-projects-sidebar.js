@@ -3,24 +3,28 @@ import getEditableContent from "./get-editablecontent";
 import createPriorityDropdown from "./create-priority-dropdown";
 import { getAllProjects } from "./project-manager";
 
+let projectCounter = 0;
+
+/* TODO: Align the project name and dropdown menu. */
+
 export default function renderProjectItem() {
   const projects = getAllProjects();
-
-  console.log(projects);
+  const latestProject = projects[projects.length - 1];
+  let projectContainerClass = `project-item-${projectCounter}`;
 
   // Project Container
   const selectProjectContainer = document.querySelector(".project-container");
-  let newProjectItem = createTextElement("", "div", "project-item");
+  let newProjectItem = createTextElement("", "div", projectContainerClass);
   selectProjectContainer.appendChild(newProjectItem);
 
   // Bullet point
-  const selectProjectItem = document.querySelector(".project-item");
+  const selectProjectItem = newProjectItem; // Use the newly created project item
   let newBulletPoint = createTextElement("•", "h5", "bullet-point");
   selectProjectItem.appendChild(newBulletPoint);
 
   // Project Title
   let newProjectEditableTitle = createTextElement(
-    "Project Name",
+    latestProject.name,
     "p",
     "project-name"
   );
@@ -29,10 +33,11 @@ export default function renderProjectItem() {
   getEditableContent("projectNameData", newProjectEditableTitle);
 
   // Add dropdown prio
-  const selectProjectName = document.querySelector(".project-name");
-
   let newDivDropdown = createTextElement("", "div", "dropdown");
   selectProjectItem.appendChild(newDivDropdown);
-  const selectDivDropDown = document.querySelector(".dropdown");
+  const selectDivDropDown = selectProjectItem.querySelector(".dropdown");
+  const selectProjectName = selectProjectItem.querySelector(".project-name");
   createPriorityDropdown(selectDivDropDown, selectProjectName);
+
+  projectCounter++;
 }
