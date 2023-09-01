@@ -10,11 +10,16 @@ let projectCounter = 0;
 export default function renderProjectItem() {
   const projects = getAllProjects();
   const latestProject = projects[projects.length - 1];
-  let projectContainerClass = `project-item-${projectCounter}`;
+  let projectContainerClass = `project-name-${projectCounter}`;
 
   // Project Container
   const selectProjectContainer = document.querySelector(".project-container");
-  let newProjectItem = createTextElement("", "div", projectContainerClass);
+  let newProjectItem = createTextElement(
+    "",
+    "div",
+    projectContainerClass,
+    "project-item"
+  );
   selectProjectContainer.appendChild(newProjectItem);
 
   // Bullet point

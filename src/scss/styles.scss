@@ -109,6 +109,8 @@ $contentChildSelector: "#content > div";
 #sidebar {
   grid-column: 1 / 2;
   grid-row: 1 / 4;
+  overflow-y: auto;
+  height: calc(100vh - 66px);
 }
 
 #main {
@@ -183,6 +185,7 @@ $contentChildSelector: "#content > div";
   display: grid;
   grid-auto-rows: 2.5rem;
   overflow: auto;
+  gap: 0.5rem;
 
   border-top: solid 2px white;
   margin: 1rem;
@@ -203,7 +206,6 @@ $contentChildSelector: "#content > div";
 }
 
 .project-name {
-  grid-column: 2 / 3;
   align-self: center;
   justify-self: start;
   white-space: pre-wrap;
