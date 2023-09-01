@@ -33,16 +33,10 @@ export default function createPriorityDropdown(
     anchor.textContent = prio;
     listItem.appendChild(anchor);
     createDropdownMenu.appendChild(listItem);
-  });
 
-  // Change the default text with the clicked menu item
-  const dropdownButton = document.getElementById("project-priority-dropdown");
-  const dropdownItems = document.querySelectorAll(".dropdown-item");
-
-  dropdownItems.forEach((item) => {
-    item.addEventListener("click", function () {
-      const selectedPrio = item.textContent;
-      dropdownButton.textContent = selectedPrio;
+    anchor.addEventListener("click", function () {
+      const selectedPrio = anchor.textContent;
+      createDropdownButton.textContent = selectedPrio;
 
       // Change project name colour based on priority.
       switch (selectedPrio) {
