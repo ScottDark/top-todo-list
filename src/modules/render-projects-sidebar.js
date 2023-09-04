@@ -2,6 +2,7 @@ import createTextElement from "./create-textElement";
 import getEditableContent from "./get-editablecontent";
 import createPriorityDropdown from "./create-priority-dropdown";
 import { getAllProjects } from "./project-manager";
+import deleteProject from "./delete-button";
 
 let projectCounter = 0;
 
@@ -27,11 +28,11 @@ export default function renderProjectItem() {
 
   // Project Title
   let newProjectEditableTitle = createTextElement(
-    latestProject.name, // Set the default text here
+    latestProject.name,
     "input",
     "project-name"
   );
-  newProjectEditableTitle.value = latestProject.name; // Set the value attribute
+  newProjectEditableTitle.value = latestProject.name;
 
   // Function to update the tooltip text
   function updateTooltip() {
@@ -41,10 +42,7 @@ export default function renderProjectItem() {
     );
   }
 
-  // Attach an event listener to update the tooltip as the input value changes
   newProjectEditableTitle.addEventListener("input", updateTooltip);
-
-  // Initial tooltip setup
   updateTooltip();
 
   selectProjectItem.appendChild(newProjectEditableTitle);
@@ -72,7 +70,9 @@ export default function renderProjectItem() {
     "btn",
     "btn-danger"
   );
+
   selectProjectItem.appendChild(deleteItem);
+  deleteProject(deleteItem);
 
   projectCounter++;
 }
