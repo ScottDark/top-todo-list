@@ -79,7 +79,7 @@ p {
 $contentChildSelector: "#content > div";
 
 @mixin gridSize {
-  grid-template-columns: 25% 1fr 1fr 1fr;
+  grid-template-columns: 30% 1fr 1fr 1fr;
   grid-template-rows: 10% 7% 78% 5%;
 }
 
@@ -111,6 +111,8 @@ $contentChildSelector: "#content > div";
   grid-row: 1 / 4;
   overflow-y: auto;
   height: calc(100vh - 66px);
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax(auto, auto);
 }
 
 #main {
@@ -195,21 +197,39 @@ $contentChildSelector: "#content > div";
 // Project container and item section
 .project-item {
   display: grid;
-  grid-template-columns: 10% 1fr 10% 10%;
+  grid-template-columns: 10% 1fr auto auto;
+  grid-template-areas: "bullet project-name dropdown delete";
   grid-row: span 1;
   grid-column: span 4;
+  align-items: center;
 }
 
 .bullet-point {
-  grid-column: 1 / 2;
+  grid-area: bullet;
   place-self: center;
 }
 
 .project-name {
+  grid-area: project-name;
   align-self: center;
   justify-self: start;
   white-space: pre-wrap;
 }
+
+#project-priority-dropdown {
+  grid-area: dropdown;
+  place-self: center;
+  width: 100%;
+  margin-right: 5px;
+}
+
+.delete-item {
+  grid-area: delete;
+  place-self: center;
+  width: 100%;
+  margin-left: 5px;
+}
+
 // Project container and item section END
 
 // Sidebar END

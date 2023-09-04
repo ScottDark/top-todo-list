@@ -5,8 +5,6 @@ import { getAllProjects } from "./project-manager";
 
 let projectCounter = 0;
 
-/* TODO: Align the project name and dropdown menu. */
-
 export default function renderProjectItem() {
   const projects = getAllProjects();
   const latestProject = projects[projects.length - 1];
@@ -23,7 +21,7 @@ export default function renderProjectItem() {
   selectProjectContainer.appendChild(newProjectItem);
 
   // Bullet point
-  const selectProjectItem = newProjectItem; // Use the newly created project item
+  const selectProjectItem = newProjectItem;
   let newBulletPoint = createTextElement("•", "h5", "bullet-point");
   selectProjectItem.appendChild(newBulletPoint);
 
@@ -37,12 +35,29 @@ export default function renderProjectItem() {
   selectProjectItem.appendChild(newProjectEditableTitle);
   getEditableContent("projectNameData", newProjectEditableTitle);
 
+  // Prevent Enter key from creating a new line
+  newProjectEditableTitle.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") {
+      e.preventDefault();
+    }
+  });
+
   // Add dropdown prio
   let newDivDropdown = createTextElement("", "div", "dropdown");
   selectProjectItem.appendChild(newDivDropdown);
   const selectDivDropDown = selectProjectItem.querySelector(".dropdown");
   const selectProjectName = selectProjectItem.querySelector(".project-name");
   createPriorityDropdown(selectDivDropDown, selectProjectName);
+
+  // Delete button
+  let deleteItem = createTextElement(
+    "X",
+    "button",
+    "delete-item",
+    "btn",
+    "btn-danger"
+  );
+  selectProjectItem.appendChild(deleteItem);
 
   projectCounter++;
 }
