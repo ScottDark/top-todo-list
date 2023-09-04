@@ -27,11 +27,26 @@ export default function renderProjectItem() {
 
   // Project Title
   let newProjectEditableTitle = createTextElement(
-    latestProject.name,
-    "p",
+    latestProject.name, // Set the default text here
+    "input",
     "project-name"
   );
-  newProjectEditableTitle.setAttribute("contenteditable", "true");
+  newProjectEditableTitle.value = latestProject.name; // Set the value attribute
+
+  // Function to update the tooltip text
+  function updateTooltip() {
+    newProjectEditableTitle.setAttribute(
+      "title",
+      newProjectEditableTitle.value
+    );
+  }
+
+  // Attach an event listener to update the tooltip as the input value changes
+  newProjectEditableTitle.addEventListener("input", updateTooltip);
+
+  // Initial tooltip setup
+  updateTooltip();
+
   selectProjectItem.appendChild(newProjectEditableTitle);
   getEditableContent("projectNameData", newProjectEditableTitle);
 
