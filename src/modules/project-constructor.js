@@ -11,6 +11,7 @@ export default function projectConstructor() {
   this.dateCreated = formattedDate;
 
   projectConstructor.prototype.addTodoItem = function (item) {
+    a;
     this.todoList.push(item);
   };
 

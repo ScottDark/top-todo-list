@@ -19,6 +19,8 @@ export default function renderProjectItem() {
     projectContainerClass,
     "project-item"
   );
+
+  newProjectItem.setAttribute("data-project-index", projectCounter);
   selectProjectContainer.appendChild(newProjectItem);
 
   // Bullet point

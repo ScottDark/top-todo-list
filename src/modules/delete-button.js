@@ -1,20 +1,33 @@
+import { getAllProjects } from "./project-manager";
+
 export default function deleteProject(deleteButton) {
   deleteButton.addEventListener("click", function () {
-    // Get the parent project item
+    const projects = getAllProjects();
     const projectItem = this.closest(".project-item");
 
     if (projectItem) {
-      // Remove the project item from the container
+      const projectNumber = projectItem.getAttribute("data-project-index");
+
+      // Remove the project item from the sidebar
       projectItem.remove();
 
-      // Find and remove any associated project-name-x div
-      const projectNumber = projectItem.classList[0].split("-")[2];
+      // Remove the associated project name div
       const projectNameDiv = document.querySelector(
         `.project-name-${projectNumber}`
       );
       if (projectNameDiv) {
         projectNameDiv.remove();
       }
+
+      // Additional code to remove the project data from the array
+      const projectIndex = parseInt(projectNumber);
+      if (!isNaN(projectIndex)) {
+        if (projectIndex >= 0 && projectIndex < projects.length) {
+          // Remove the project data from the array
+          projects.splice(projectIndex, 1);
+        }
+      }
     }
+    console.log(projects);
   });
 }
