@@ -2,6 +2,7 @@ import createTextElement from "./create-textElement";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 export default function createPriorityDropdown(
+  project,
   selectDivDropDown,
   selectProjectName
 ) {
@@ -42,15 +43,22 @@ export default function createPriorityDropdown(
       switch (selectedPrio) {
         case "1":
           selectProjectName.style.color = "red";
+          project.priority = "1";
           break;
         case "2":
           selectProjectName.style.color = "yellow";
+          project.priority = "2";
+
           break;
         case "3":
           selectProjectName.style.color = "green";
+          project.priority = "3";
+
           break;
         default:
           selectProjectName.style.color = "white";
+          project.priority = "*";
+
           break;
       }
     });
