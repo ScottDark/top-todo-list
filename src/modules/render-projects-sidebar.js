@@ -9,38 +9,36 @@ export default function renderProjectItem() {
   const latestProject = projects[projects.length - 1];
 
   // Use the project's ID as the data attribute
-  let projectContainerClass = `project-name-${latestProject.id}`;
+  const projectContainerClass = `project-name-${latestProject.id}`;
+
   // Project Container
   const selectProjectContainer = document.querySelector(".project-container");
-  let newProjectItem = createTextElement(
+  const newProjectItem = createTextElement(
     "",
     "div",
     projectContainerClass,
     "project-item"
   );
 
-  newProjectItem.setAttribute("data-project-index", latestProject.id); // Use the project's ID
+  newProjectItem.setAttribute("data-project-index", latestProject.id);
+
   selectProjectContainer.appendChild(newProjectItem);
 
   // Bullet point
   const selectProjectItem = newProjectItem;
-  let newBulletPoint = createTextElement("•", "h5", "bullet-point");
+  const newBulletPoint = createTextElement("•", "h5", "bullet-point");
   selectProjectItem.appendChild(newBulletPoint);
 
   // Project Title
-  let newProjectEditableTitle = createTextElement(
+  const newProjectEditableTitle = createTextElement(
     latestProject.name,
     "input",
     "project-name"
   );
   newProjectEditableTitle.value = latestProject.name;
 
-  // Function to update the tooltip text
   function updateTooltip() {
-    newProjectEditableTitle.setAttribute(
-      "title",
-      newProjectEditableTitle.value
-    );
+    newProjectEditableTitle.title = newProjectEditableTitle.value; // Simplified tooltip update
   }
 
   newProjectEditableTitle.addEventListener("input", updateTooltip);
@@ -55,27 +53,19 @@ export default function renderProjectItem() {
     if (e.key === "Enter") {
       e.preventDefault();
       latestProject.name = newProjectEditableTitle.value;
-      // Optionally, you can call a function to save the project name to your data store here.
       newProjectEditableTitle.blur(); // This line makes the input lose focus
     }
   });
 
-  // Prevent Enter key from creating a new line
-  newProjectEditableTitle.addEventListener("keydown", function (e) {
-    if (e.key === "Enter") {
-      e.preventDefault();
-    }
-  });
-
   // Add dropdown prio
-  let newDivDropdown = createTextElement("", "div", "dropdown");
+  const newDivDropdown = createTextElement("", "div", "dropdown");
   selectProjectItem.appendChild(newDivDropdown);
   const selectDivDropDown = selectProjectItem.querySelector(".dropdown");
   const selectProjectName = selectProjectItem.querySelector(".project-name");
   createPriorityDropdown(selectDivDropDown, selectProjectName);
 
   // Delete button
-  let deleteItem = createTextElement(
+  const deleteItem = createTextElement(
     "X",
     "button",
     "delete-item",
