@@ -1,7 +1,10 @@
 import { format } from "date-fns";
 import { addProject } from "./project-manager";
 
+let projectCounter = 0; // Initialize a counter to generate unique IDs
+
 export default function projectConstructor() {
+  this.id = projectCounter++; // Assign a unique ID
   this.name = "Project Name";
   this.priority = "*";
   this.todoList = [];
@@ -11,7 +14,6 @@ export default function projectConstructor() {
   this.dateCreated = formattedDate;
 
   projectConstructor.prototype.addTodoItem = function (item) {
-    a;
     this.todoList.push(item);
   };
 

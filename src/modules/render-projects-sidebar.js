@@ -4,13 +4,12 @@ import createPriorityDropdown from "./create-priority-dropdown";
 import { getAllProjects } from "./project-manager";
 import deleteProject from "./delete-button";
 
-let projectCounter = 0;
-
 export default function renderProjectItem() {
   const projects = getAllProjects();
   const latestProject = projects[projects.length - 1];
-  let projectContainerClass = `project-name-${projectCounter}`;
 
+  // Use the project's ID as the data attribute
+  let projectContainerClass = `project-name-${latestProject.id}`;
   // Project Container
   const selectProjectContainer = document.querySelector(".project-container");
   let newProjectItem = createTextElement(
@@ -20,7 +19,7 @@ export default function renderProjectItem() {
     "project-item"
   );
 
-  newProjectItem.setAttribute("data-project-index", projectCounter);
+  newProjectItem.setAttribute("data-project-index", latestProject.id); // Use the project's ID
   selectProjectContainer.appendChild(newProjectItem);
 
   // Bullet point
@@ -48,7 +47,18 @@ export default function renderProjectItem() {
   updateTooltip();
 
   selectProjectItem.appendChild(newProjectEditableTitle);
-  getEditableContent("projectNameData", newProjectEditableTitle);
+
+  getEditableContent(latestProject, newProjectEditableTitle);
+
+  // Prevent Enter key from creating a new line and make the input lose focus
+  newProjectEditableTitle.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      latestProject.name = newProjectEditableTitle.value;
+      // Optionally, you can call a function to save the project name to your data store here.
+      newProjectEditableTitle.blur(); // This line makes the input lose focus
+    }
+  });
 
   // Prevent Enter key from creating a new line
   newProjectEditableTitle.addEventListener("keydown", function (e) {
@@ -76,5 +86,5 @@ export default function renderProjectItem() {
   selectProjectItem.appendChild(deleteItem);
   deleteProject(deleteItem);
 
-  projectCounter++;
+  return newProjectItem; // Return the newly created project item
 }

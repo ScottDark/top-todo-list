@@ -1,27 +1,15 @@
-import saveDataToLocalStorage from "./save-data-local-storage";
-
-/* Adds event listeners for editablecontent and  Sends saved data to be saved to local storage. */
-export default function getEditableContent(typeOfData, contentEditableElement) {
-  let userEnteredValue;
-  let isEnterKeyPressed = false;
-
-  // Save the project name and remove focus on element.
-  contentEditableElement.addEventListener("keydown", function (event) {
-    if (event.key === "Enter") {
-      event.preventDefault();
-      userEnteredValue = contentEditableElement.textContent.trim();
-      saveDataToLocalStorage(typeOfData, userEnteredValue); // Not implemented
-      isEnterKeyPressed = true;
-      contentEditableElement.blur();
-    }
+export default function getEditableContent(project, inputElement) {
+  // Update the project name when the input value changes
+  inputElement.addEventListener("input", function () {
+    project.name = inputElement.value;
   });
 
-  // If the user clicks off the element after editing it saves and loses focus on element.
-  contentEditableElement.addEventListener("blur", function () {
-    if (isEnterKeyPressed === false) {
-      userEnteredValue = contentEditableElement.textContent.trim();
-      saveDataToLocalStorage(typeOfData, userEnteredValue); // Not implemented
+  // Handle the Enter key to save the project name
+  inputElement.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      project.name = inputElement.value;
+      // Optionally, you can call a function to save the project name to your data store here.
     }
-    isEnterKeyPressed = false;
   });
 }
