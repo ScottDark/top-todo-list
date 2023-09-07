@@ -2,6 +2,7 @@ import createTextElement from "./create-textElement";
 import getEditableContent from "./get-editablecontent";
 import createPriorityDropdown from "./create-priority-dropdown";
 import deleteProject from "./delete-button";
+import { populateHeaderWithProjectDetails } from "./populate-header-info";
 
 export default function renderProjectItem(latestProject) {
   // Use the project's ID as the data attribute
@@ -17,6 +18,11 @@ export default function renderProjectItem(latestProject) {
   );
 
   newProjectItem.setAttribute("data-project-index", latestProject.id);
+
+  newProjectItem.addEventListener("click", function () {
+    // Populate the header with the project details using the imported function
+    populateHeaderWithProjectDetails(latestProject);
+  });
 
   selectProjectContainer.appendChild(newProjectItem);
 

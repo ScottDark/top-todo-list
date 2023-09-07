@@ -14,7 +14,6 @@ export default function deleteProject(deleteButton) {
 
       // Remove the associated project object from the array
       removeProjectById(projectId);
-      console.log(getAllProjects());
     }
   });
 }
