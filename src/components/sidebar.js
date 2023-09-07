@@ -1,5 +1,7 @@
 import createTextElement from "../modules/create-textElement";
 import createNewProjectButton from "../modules/create-new-project";
+import sortButton from "../modules/sort-button";
+import { getAllProjects } from "../modules/project-manager";
 
 export default function buildSidebar() {
   const selectSidebar = document.querySelector("#sidebar");
@@ -20,9 +22,9 @@ export default function buildSidebar() {
   let newHorizontalRule = createTextElement("", "hr", "page-break");
 
   let createSortButton = createTextElement(
-    "Sort by: Date",
+    "Sort by: Name",
     "button",
-    "sort-item-button-projects",
+    "sort-button-projects",
     "btn",
     "btn-primary"
   );
@@ -35,5 +37,9 @@ export default function buildSidebar() {
   selectSidebar.appendChild(createSortButton);
   selectSidebar.appendChild(projectContainer);
 
+  const selectSortButton = document.querySelector(".sort-button-projects");
+  const projects = getAllProjects();
+
+  sortButton(selectSortButton, projects);
   createNewProjectButton();
 }

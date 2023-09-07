@@ -10,7 +10,8 @@ export default function projectConstructor() {
   this.todoList = [];
 
   const currentDate = new Date();
-  const formattedDate = format(currentDate, "MMMM dd, yyyy");
+  currentDate.setSeconds(projectCounter); // Add seconds to the date
+  const formattedDate = format(currentDate, "MMMM dd, yyyy HH:mm:ss"); // Include seconds in the format
   this.dateCreated = formattedDate;
 
   projectConstructor.prototype.addTodoItem = function (item) {

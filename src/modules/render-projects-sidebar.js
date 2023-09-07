@@ -1,13 +1,9 @@
 import createTextElement from "./create-textElement";
 import getEditableContent from "./get-editablecontent";
 import createPriorityDropdown from "./create-priority-dropdown";
-import { getAllProjects } from "./project-manager";
 import deleteProject from "./delete-button";
 
-export default function renderProjectItem() {
-  const projects = getAllProjects();
-  const latestProject = projects[projects.length - 1];
-
+export default function renderProjectItem(latestProject) {
   // Use the project's ID as the data attribute
   const projectContainerClass = `project-name-${latestProject.id}`;
 

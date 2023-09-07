@@ -5,8 +5,9 @@ export default function createNewProject() {
   const selectNewProjectButton = document.querySelector(".new-project-button");
 
   selectNewProjectButton.addEventListener("click", function () {
-    new projectConstructor();
+    const newProject = new projectConstructor(); // Create a new project instance
 
-    renderProjectsToSidebar();
+    // Render the project item directly with the project data
+    renderProjectsToSidebar(newProject);
   });
 }
