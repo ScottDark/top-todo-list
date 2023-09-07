@@ -10,18 +10,10 @@ export default function buildHeader() {
     projects.length > 0 ? projects[projects.length - 1] : null;
   const projectName = latestProject ? latestProject.name : "";
 
-  // Create an input element for the project name
-  const projectNameInput = document.createElement("input");
-  projectNameInput.type = "text";
-  projectNameInput.value = projectName;
-  projectNameInput.className = "project-name"; // Use the same class name as in the sidebar
-
-  // Event listener to update the project name
-  projectNameInput.addEventListener("input", function () {
-    if (latestProject) {
-      latestProject.name = this.value;
-    }
-  });
+  // Create a paragraph element for the project name
+  const projectNameParagraph = document.createElement("p");
+  projectNameParagraph.className = "project-name"; // Use the same class name as in the sidebar
+  projectNameParagraph.textContent = projectName; // Set the project name text content
 
   // Create date and priority elements
   const dateCreated = latestProject ? latestProject.dateCreated : "N/A";
@@ -39,7 +31,19 @@ export default function buildHeader() {
     "project-priority"
   );
 
-  selectHeader.appendChild(projectNameInput);
+  selectHeader.appendChild(projectNameParagraph); // Append the paragraph element
   selectHeader.appendChild(projectDateCreated);
   selectHeader.appendChild(projectPrioLevel);
+
+  // Add event listeners to project items in the sidebar
+  const projectItems = document.querySelectorAll(".project-item");
+  projectItems.forEach((item) => {
+    item.addEventListener("click", () => {
+      // Get the project name from the clicked item's data attribute
+      const projectName = item.getAttribute("data-project-name");
+
+      // Update the paragraph text content with the project name
+      projectNameParagraph.textContent = projectName;
+    });
+  });
 }

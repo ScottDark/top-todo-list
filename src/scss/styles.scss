@@ -141,11 +141,6 @@ $contentChildSelector: "#content > div";
   grid-template-rows: auto; /* Allow the header to expand to accommodate the content */
 }
 
-#header > .project-name input {
-  text-align: center; /* Center-align the text horizontally */
-  line-height: 2rem; /* Adjust this value based on your input field's height */
-}
-
 #header > .project-name {
   grid-column: 1 / -1; /* Span all columns */
   grid-row: 1 / 2; /* Specify the 1st row */

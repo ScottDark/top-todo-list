@@ -24,6 +24,11 @@ export default function renderProjectItem(latestProject) {
     populateHeaderWithProjectDetails(latestProject);
   });
 
+  newProjectItem.addEventListener("input", function () {
+    // Populate the header with the project details using the imported function
+    populateHeaderWithProjectDetails(latestProject);
+  });
+
   selectProjectContainer.appendChild(newProjectItem);
 
   // Bullet point

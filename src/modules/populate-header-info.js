@@ -7,7 +7,7 @@ export function populateHeaderWithProjectDetails(project) {
   const projectPrioLevel = document.querySelector(".project-priority");
 
   // Populate the header elements with project details
-  projectNameInput.value = project.name;
+  projectNameInput.textContent = project.name;
   projectDateCreated.textContent = `Date Created: ${project.dateCreated}`;
   projectPrioLevel.textContent = `Priority: ${project.priority}`;
 }
