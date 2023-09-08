@@ -8,6 +8,21 @@ export default function renderProjectItem(latestProject) {
   // Use the project's ID as the data attribute
   const projectContainerClass = `project-name-${latestProject.id}`;
 
+  // Determine the text color based on the project's priority
+  let nameColor = "white"; // Default color
+
+  switch (latestProject.priority) {
+    case "1":
+      nameColor = "red";
+      break;
+    case "2":
+      nameColor = "yellow";
+      break;
+    case "3":
+      nameColor = "green";
+      break;
+  }
+
   // Project Container
   const selectProjectContainer = document.querySelector(".project-container");
   const newProjectItem = createTextElement(
@@ -18,6 +33,9 @@ export default function renderProjectItem(latestProject) {
   );
 
   newProjectItem.setAttribute("data-project-index", latestProject.id);
+
+  // Set the text color for the project name here
+  newProjectItem.style.color = nameColor;
 
   newProjectItem.addEventListener("click", function () {
     // Populate the header with the project details using the imported function
@@ -50,6 +68,9 @@ export default function renderProjectItem(latestProject) {
 
   newProjectEditableTitle.addEventListener("input", updateTooltip);
   updateTooltip();
+
+  // Set the text color for the project name here as well
+  newProjectEditableTitle.style.color = nameColor;
 
   selectProjectItem.appendChild(newProjectEditableTitle);
 
