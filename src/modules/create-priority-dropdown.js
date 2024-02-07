@@ -1,10 +1,10 @@
 import createTextElement from "./create-textElement";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
-export default function createPriorityDropdown(project) {
+export default function createPriorityDropdown(entity, entityType) {
   // Create the dropdown button
   const createDropdownButton = createTextElement(
-    project.priority, // Set the initial text to project priority
+    entity.priority, // Set the initial text to entity priority
     "button",
     "btn",
     "btn-info",
@@ -17,7 +17,7 @@ export default function createPriorityDropdown(project) {
   createDropdownButton.setAttribute("aria-expanded", "false");
   createDropdownButton.setAttribute(
     "id",
-    `project-priority-dropdown-${project.id}`
+    `${entityType}-priority-dropdown-${entity.id}`
   );
 
   // Create the dropdown menu
@@ -44,25 +44,25 @@ export default function createPriorityDropdown(project) {
       // Change the bullet point color based on priority.
       switch (selectedPrio) {
         case "1":
-          project.priority = "1";
+          entity.priority = "1";
           break;
         case "2":
-          project.priority = "2";
+          entity.priority = "2";
           break;
         case "3":
-          project.priority = "3";
+          entity.priority = "3";
           break;
         default:
-          project.priority = "*";
+          entity.priority = "*";
           break;
       }
 
       // Apply the color to the bullet point
       const selectBulletPoint = document.querySelector(
-        `.project-name-${project.id} .bullet-point`
+        `.${entityType}-${entity.id} .bullet-point`
       );
 
-      switch (project.priority) {
+      switch (entity.priority) {
         case "1":
           selectBulletPoint.style.color = "red";
           break;
@@ -78,13 +78,13 @@ export default function createPriorityDropdown(project) {
       }
 
       // Update the dropdown button text to the selected priority
-      createDropdownButton.textContent = project.priority;
+      createDropdownButton.textContent = entity.priority;
     });
   });
 
-  // Append the dropdown button and menu to the project container
+  // Append the dropdown button and menu to the entity container
   const selectDivDropDown = document.querySelector(
-    `.project-name-${project.id} .dropdown`
+    `.${entityType}-${entity.id} .dropdown`
   );
   selectDivDropDown.appendChild(createDropdownButton);
   selectDivDropDown.appendChild(createDropdownMenu);

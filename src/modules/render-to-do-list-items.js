@@ -26,6 +26,8 @@ export default function renderToDoListItems(latestItem) {
   const selectMain = document.querySelector("#main");
   const newItem = createTextElement("", "div", itemContainerClass, "item");
 
+  newItem.classList.add("item-container");
+
   newItem.setAttribute("data-item-index", latestItem.id);
 
   // Set the text color for the item name here
@@ -71,7 +73,7 @@ export default function renderToDoListItems(latestItem) {
   // Now that the elements have been appended to newItem, you can select them
   const selectDivDropDown = newItem.querySelector(".dropdown");
   const selectItemName = newItem.querySelector(".item-name");
-  createPriorityDropdown(latestItem, "item");
+  createPriorityDropdown(latestItem, "item-name");
 
   // Delete button
   const deleteItem = createTextElement(
@@ -84,4 +86,12 @@ export default function renderToDoListItems(latestItem) {
 
   newItem.appendChild(deleteItem);
   deleteProject(deleteItem);
+
+  // Adjust the max-height of the #main element
+  const mainElement = document.querySelector("#main");
+  const headerHeight = document.querySelector("#header").offsetHeight;
+  const footerHeight = document.querySelector("#footer").offsetHeight;
+  mainElement.style.maxHeight = `calc(100vh - ${
+    headerHeight + footerHeight
+  }px)`;
 }
