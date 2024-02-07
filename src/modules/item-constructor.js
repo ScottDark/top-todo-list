@@ -1,3 +1,6 @@
+import { format } from "date-fns";
+import { utcToZonedTime } from "date-fns-tz";
+
 let itemCounter = 0; //Counter to generate unique ID for each item
 
 export default function itemConstructor() {
@@ -6,9 +9,10 @@ export default function itemConstructor() {
   this.priority = "*";
 
   const currentDate = new Date();
-  currentDate.setSeconds(itemCounter); // Add seconds to the date
-  const formattedDate = format(currentDate, "MMMM dd, yyyy HH:mm:ss"); // Include seconds in the format
+  const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  const zonedDate = utcToZonedTime(currentDate, timeZone);
+  const formattedDate = format(zonedDate, "MMMM dd, yyyy HH:mm:ss", {
+    timeZone: timeZone,
+  }); // Include seconds in the format
   this.dateCreated = formattedDate;
-
-  // Add item to current project todolist array. Finish building out todolist item.
 }
