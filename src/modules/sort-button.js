@@ -11,7 +11,15 @@ export default function sortButton(selectSortButton, projects) {
     },
     {
       label: "Sort by: Prio",
-      compare: (a, b) => a.priority.localeCompare(b.priority),
+      compare: (a, b) => {
+        if (a.priority === "*" && b.priority !== "*") {
+          return 1; // a is sorted to the bottom
+        } else if (b.priority === "*" && a.priority !== "*") {
+          return -1; // b is sorted to the bottom
+        } else {
+          return a.priority.localeCompare(b.priority); // Otherwise, sort alphabetically
+        }
+      },
     },
   ];
 

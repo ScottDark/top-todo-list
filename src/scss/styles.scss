@@ -73,13 +73,35 @@ body {
   overflow-y: auto; // Add a vertical scrollbar when the content exceeds the height
   max-height: calc(100vh - 60px); // Adjust this value as needed
   overflow-x: hidden; // Hide the horizontal scrollbar
-  box-sizing: border-box; // Include the scrollbar width in the element's total width
 
   // WebKit-based browsers
   overflow: overlay;
 
   // Firefox
   scrollbar-width: thin;
+}
+
+/* For Chrome, Safari, and Opera */
+::-webkit-scrollbar {
+  width: 10px; /* Adjust scrollbar width */
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Adjust track color */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888; /* Adjust thumb color */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Adjust thumb color when hovering */
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin; /* "auto" or "thin" */
+  scrollbar-color: #888 #f1f1f1; /* thumb and track color */
 }
 
 // Text margin was giving me extra margin here had to manually set to 0.
@@ -108,10 +130,10 @@ $contentChildSelector: "#content > div";
 // Layout of grid
 #content {
   @include gridSize;
+  display: grid;
 }
 
-#content,
-#{$contentChildSelector} {
+#{$contentChildSelector}:not(#main) {
   display: grid;
   border: solid 1px white;
 }
@@ -135,9 +157,11 @@ $contentChildSelector: "#content > div";
   grid-column: 1 / 2;
   grid-row: 1 / 4;
   overflow-y: auto;
-  height: calc(100vh - 55px);
+  height: calc(100vh - 47px);
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: minmax(auto, auto);
+  border-bottom: none;
+  margin-bottom: 0;
 }
 
 #main {
@@ -231,6 +255,8 @@ $contentChildSelector: "#content > div";
   border-top: solid 2px white;
   margin: 1rem;
   padding: 5px;
+  border-bottom: none;
+  margin-bottom: 0;
 }
 
 // Project container and item section
@@ -253,6 +279,7 @@ $contentChildSelector: "#content > div";
   align-self: center;
   justify-self: start;
   max-width: 280px;
+  width: 75%;
 
   background: none;
   border: none;
