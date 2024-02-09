@@ -65,14 +65,13 @@ body,
 body {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  height: 100vh;
+  margin: 0;
 }
 
 #main {
-  flex: 1 0 auto; // This will allow the #main to grow and shrink as needed, but not shrink below its base size
-  overflow-y: auto; // Add a vertical scrollbar when the content exceeds the height
-  max-height: calc(100vh - 60px); // Adjust this value as needed
-  overflow-x: hidden; // Hide the horizontal scrollbar
+  flex-grow: 1; // This will allow the #main to grow and shrink as needed
+  overflow: auto;
 
   // WebKit-based browsers
   overflow: overlay;
@@ -133,14 +132,18 @@ $contentChildSelector: "#content > div";
   display: grid;
 }
 
-#{$contentChildSelector}:not(#main) {
+#{$contentChildSelector}:not(#main):not(#header):not(#toolbar) {
   display: grid;
   border: solid 1px white;
 }
 
 #header {
+  display: grid;
   grid-column: 2 / 5;
   grid-row: 1 / 2;
+
+  border-top: 1px solid white; /* Add top border */
+  border-right: 1px solid white; /* Add right border */
 }
 
 #header > .project-name {
@@ -149,8 +152,12 @@ $contentChildSelector: "#content > div";
 }
 
 #toolbar {
+  display: grid;
   grid-column: 2 / 5;
   grid-row: 2 / 3;
+
+  border: solid 1px white;
+  border-left: none;
 }
 
 #sidebar {
@@ -272,6 +279,14 @@ $contentChildSelector: "#content > div";
 .bullet-point {
   grid-area: bullet;
   place-self: center;
+}
+
+#header > .project-name {
+  grid-column: 1 / -1; /* Span all columns */
+  grid-row: 1 / 2; /* Specify the 1st row */
+  justify-self: center; /* Center horizontally */
+  align-self: center; /* Center vertically */
+  text-align: center; /* Center the text */
 }
 
 .project-name {
