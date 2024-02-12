@@ -15,6 +15,6 @@ export default function deleteProject(deleteButton) {
 
     const headerManager = new HeaderManager();
     headerManager.resetHeader();
-    headerManager.enablePopulation();
+    headerManager.toggleNewItemButton();
   });
 }

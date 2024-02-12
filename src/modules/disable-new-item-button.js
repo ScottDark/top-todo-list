@@ -1,3 +1,5 @@
+import headerManager from "./header-manager.js";
+
 export default function disableNewItemButton() {
   const projectDateCreated = document.querySelector(".project-date-created");
   const button = document.querySelector(".create-new-item-button");
@@ -5,7 +7,7 @@ export default function disableNewItemButton() {
   button.disabled = true;
 
   const observer = new MutationObserver(function () {
-    if (projectDateCreated.innerText !== "N/A") {
+    if (headerManager.isHeaderPopulated) {
       button.disabled = false;
     } else {
       button.disabled = true;

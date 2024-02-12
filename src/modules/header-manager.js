@@ -1,6 +1,9 @@
+import disableNewItemButton from "./disable-new-item-button";
+
 class HeaderManager {
   constructor() {
     this.shouldPopulate = true;
+    this.isHeaderPopulated = true;
   }
 
   enablePopulation() {
@@ -9,6 +12,11 @@ class HeaderManager {
 
   disablePopulation() {
     this.shouldPopulate = false;
+  }
+
+  toggleNewItemButton() {
+    const button = document.querySelector(".create-new-item-button");
+    button.disabled = !this.isHeaderPopulated;
   }
 
   populateHeaderWithProjectDetails(project) {
@@ -21,6 +29,9 @@ class HeaderManager {
     projectNameInput.textContent = project.name;
     projectDateCreated.textContent = `Date Created: ${project.dateCreated}`;
     projectPrioLevel.textContent = `Priority: ${project.priority}`;
+
+    this.isHeaderPopulated = true;
+    this.toggleNewItemButton();
   }
 
   resetHeader() {
@@ -33,6 +44,9 @@ class HeaderManager {
     projectNameInput.innerHTML = "";
     projectDateCreated.innerHTML = "Date Created: N/A";
     projectPrioLevel.innerHTML = "Priority: N/A";
+
+    this.isHeaderPopulated = false;
+    this.toggleNewItemButton();
   }
 }
 
