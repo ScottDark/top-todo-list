@@ -16,5 +16,9 @@ export default function deleteProject(deleteButton) {
     const headerManager = new HeaderManager();
     headerManager.resetHeader();
     headerManager.toggleNewItemButton();
+
+    // Clear the #main of all todo list items
+    const mainElement = document.querySelector("#main");
+    mainElement.innerHTML = "";
   });
 }
