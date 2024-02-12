@@ -1,5 +1,5 @@
 import { removeProjectById } from "./project-manager";
-import resetHeader from "./reset-header";
+import HeaderManager from "./header-manager";
 
 export default function deleteProject(deleteButton) {
   deleteButton.addEventListener("click", function () {
@@ -13,6 +13,8 @@ export default function deleteProject(deleteButton) {
     // Remove the associated project object from the array
     removeProjectById(projectId);
 
-    resetHeader();
+    const headerManager = new HeaderManager();
+    headerManager.resetHeader();
+    headerManager.enablePopulation();
   });
 }
