@@ -75,8 +75,6 @@ export default function renderProjectItem(latestProject) {
   // Add dropdown prio
   const newDivDropdown = createTextElement("", "div", "dropdown");
   selectProjectItem.appendChild(newDivDropdown);
-  const selectDivDropDown = selectProjectItem.querySelector(".dropdown");
-  const selectProjectName = selectProjectItem.querySelector(".project-name");
   createPriorityDropdown(latestProject, "project-name");
 
   // Delete button

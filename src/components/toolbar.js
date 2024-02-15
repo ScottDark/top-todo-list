@@ -1,4 +1,3 @@
-import { Button } from "bootstrap";
 import createTextElement from "../modules/create-textElement";
 
 export default function buildToolbar() {

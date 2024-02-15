@@ -40,7 +40,3 @@ class HeaderManager {
 }
 
 export default HeaderManager;
-
-// TODO
-// Fix how the header is populated with project details when clicking on the sidebar to update the project details on the header.
-// Fix the issue with the New Item button being disabled when the header is populated with project details.
