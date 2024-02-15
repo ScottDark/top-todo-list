@@ -2,7 +2,6 @@ import createTextElement from "./create-textElement";
 import getEditableContent from "./get-editablecontent";
 import createPriorityDropdown from "./create-priority-dropdown";
 import deleteProject from "./delete-button";
-import HeaderManager from "./header-manager";
 
 export default function renderProjectItem(latestProject) {
   // Use the project's ID as the data attribute
@@ -33,22 +32,7 @@ export default function renderProjectItem(latestProject) {
   );
 
   newProjectItem.setAttribute("data-project-index", latestProject.id);
-
-  // Set the text color for the project name here
   newProjectItem.style.color = nameColor;
-
-  const headerManager = new HeaderManager();
-
-  newProjectItem.addEventListener("click", function () {
-    // Populate the header with the project details using the imported function
-    headerManager.populateHeaderWithProjectDetails(latestProject);
-    headerManager.disablePopulation();
-  });
-
-  newProjectItem.addEventListener("input", function () {
-    // Populate the header with the project details using the imported function
-    headerManager.populateHeaderWithProjectDetails(latestProject);
-  });
 
   selectProjectContainer.appendChild(newProjectItem);
 

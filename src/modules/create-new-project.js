@@ -8,11 +8,13 @@ export default function createNewProject() {
   selectNewProjectButton.addEventListener("click", function () {
     const newProject = new projectConstructor(); // Create a new project instance
 
-    // Render the project item directly with the project data
-    renderProjectsToSidebar(newProject);
+    // Render the new project to the sidebar
+    const newProjectElement = renderProjectsToSidebar(newProject);
 
     const headerManager = new HeaderManager();
-    headerManager.populateHeaderWithProjectDetails(newProject);
-    headerManager.disablePopulation();
+
+    newProjectElement.addEventListener("click", () => {
+      headerManager.populateHeaderWithProjectDetails(newProject);
+    });
   });
 }

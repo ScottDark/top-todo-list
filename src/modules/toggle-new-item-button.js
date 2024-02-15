@@ -1,13 +1,13 @@
 import headerManager from "./header-manager.js";
 
-export default function disableNewItemButton() {
+export default function toggleNewItemButton() {
   const projectDateCreated = document.querySelector(".project-date-created");
   const button = document.querySelector(".create-new-item-button");
 
   button.disabled = true;
 
   const observer = new MutationObserver(function () {
-    if (headerManager.isHeaderPopulated) {
+    if (!headerManager.isHeaderPopulated) {
       button.disabled = false;
     } else {
       button.disabled = true;
