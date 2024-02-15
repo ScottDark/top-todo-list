@@ -1,3 +1,4 @@
+import { Button } from "bootstrap";
 import createTextElement from "../modules/create-textElement";
 
 export default function buildToolbar() {
@@ -20,6 +21,7 @@ export default function buildToolbar() {
 
   createSortBy.setAttribute("type", "button");
   createNewItem.setAttribute("type", "button");
+  createNewItem.disabled = true;
 
   selectToolbar.appendChild(createNewItem);
   selectToolbar.appendChild(createSortBy);

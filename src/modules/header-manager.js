@@ -1,6 +1,7 @@
+import toggleNewItemButton from "./toggle-new-item-button";
+
 class HeaderManager {
   constructor() {
-    this.isHeaderPopulated = true;
     this.shouldPopulate = true;
   }
 
@@ -20,8 +21,7 @@ class HeaderManager {
     projectDateCreated.textContent = `Date Created: ${project.dateCreated}`;
     projectPrioLevel.textContent = `Priority: ${project.priority}`;
 
-    this.isHeaderPopulated = true;
-    this.toggleNewItemButton();
+    toggleNewItemButton(true);
   }
 
   resetHeader() {
@@ -35,8 +35,7 @@ class HeaderManager {
     projectDateCreated.innerHTML = "Date Created: N/A";
     projectPrioLevel.innerHTML = "Priority: N/A";
 
-    this.isHeaderPopulated = false;
-    this.toggleNewItemButton();
+    toggleNewItemButton(false);
   }
 }
 

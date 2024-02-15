@@ -3,14 +3,12 @@ import buildHeader from "../components/header";
 import buildToolbar from "../components/toolbar";
 import buildSidebar from "../components/sidebar";
 import createToDoListItem from "../modules/create-to-do-list-item";
-import toggleNewItemButton from "../modules/toggle-new-item-button";
 
 function buildPage() {
   buildHeader();
   buildToolbar();
   buildSidebar();
   createToDoListItem();
-  toggleNewItemButton();
 
   // Get the elements
   const mainElement = document.querySelector("#main");

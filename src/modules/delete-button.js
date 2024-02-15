@@ -3,6 +3,8 @@ import HeaderManager from "./header-manager";
 
 export default function deleteProject(deleteButton) {
   deleteButton.addEventListener("click", function () {
+    event.stopPropagation();
+
     const projectItem = this.closest(".project-item");
 
     const projectId = parseInt(projectItem.getAttribute("data-project-index"));
@@ -15,7 +17,6 @@ export default function deleteProject(deleteButton) {
 
     const headerManager = new HeaderManager();
     headerManager.resetHeader();
-    headerManager.toggleNewItemButton();
 
     // Clear the #main of all todo list items
     const mainElement = document.querySelector("#main");
