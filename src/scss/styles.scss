@@ -267,6 +267,10 @@ $contentChildSelector: "#content > div";
   margin-bottom: 0;
 }
 
+.selected-project {
+  border: 3px solid white;
+}
+
 // Project container and item section
 .project-item {
   display: grid;
