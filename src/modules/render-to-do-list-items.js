@@ -35,6 +35,11 @@ export default function renderToDoListItems(latestItem) {
 
   selectMain.appendChild(newItem);
 
+  // Bullet point
+  const selectToDoListItem = newItem;
+  const newBulletPoint = createTextElement("•", "h5", "bullet-point");
+  selectToDoListItem.appendChild(newBulletPoint);
+
   // Item Title
   const newItemEditableTitle = createTextElement(
     latestItem.name,

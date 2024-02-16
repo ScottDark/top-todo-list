@@ -6,7 +6,6 @@ export default function createToDoListItem() {
     ".create-new-item-button"
   );
 
-  // itemConstructor & renderToDoListItems needs to be created to function
   selectCreateNewItemButton.addEventListener("click", function () {
     const newItem = new itemConstructor();
 
