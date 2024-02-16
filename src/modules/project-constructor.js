@@ -18,6 +18,12 @@ export default function projectConstructor() {
     this.todoList.push(item);
   };
 
+  projectConstructor.prototype.removeTodoItem = function (item) {
+    const index = this.todoList.indexOf(item);
+    if (index > -1) {
+      this.todoList.splice(index, 1);
+    }
+  };
   // Add project to array of projects.
   addProject(this);
 }

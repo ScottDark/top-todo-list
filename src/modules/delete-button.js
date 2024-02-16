@@ -1,4 +1,4 @@
-import { removeProjectById } from "./project-manager";
+import { removeProjectById, getAllProjects } from "./project-manager";
 import HeaderManager from "./header-manager";
 
 export default function deleteProject(deleteButton) {
@@ -25,10 +25,27 @@ export default function deleteProject(deleteButton) {
       mainElement.innerHTML = "";
     } else if (toDoListItem) {
       const itemId = parseInt(toDoListItem.getAttribute("data-item-index"));
+
+      // Get the currently selected project element
+      const selectedProjectElement =
+        document.querySelector(".selected-project");
+
+      // Get the project's id from the data attribute
+      const projectId =
+        selectedProjectElement.getAttribute("data-project-index");
+
+      const project = getAllProjects()[projectId];
+      if (project) {
+        const item = project.todoList.find((item) => item.id === itemId);
+        if (item) {
+          // console.log("Before deletion:", project.todoList);
+          project.removeTodoItem(item);
+          // console.log("After deletion:", project.todoList);
+        }
+      }
+
       // Remove the todo list item
       toDoListItem.remove();
-      // Here you should also remove the todo list item from the project's todo list
-      // removeTodoItemById(itemId);
     }
   });
 }
