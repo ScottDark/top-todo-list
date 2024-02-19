@@ -2,6 +2,7 @@ import createTextElement from "./create-textElement";
 import getEditableContent from "./get-editablecontent";
 import createPriorityDropdown from "./create-priority-dropdown";
 import deleteProject from "./delete-button";
+import selectProjectBorder from "./select-project-border";
 
 export default function renderProjectItem(latestProject) {
   // Use the project's ID as the data attribute
@@ -88,6 +89,10 @@ export default function renderProjectItem(latestProject) {
 
   selectProjectItem.appendChild(deleteItem);
   deleteProject(deleteItem);
+
+  newProjectItem.addEventListener("click", () => {
+    selectProjectBorder(newProjectItem);
+  });
 
   return newProjectItem; // Return the newly created project item
 }

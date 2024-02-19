@@ -99,4 +99,6 @@ export default function renderToDoListItems(latestItem) {
   mainElement.style.maxHeight = `calc(100vh - ${
     headerHeight + footerHeight
   }px)`;
+
+  return newItem; // Return the newly created item
 }

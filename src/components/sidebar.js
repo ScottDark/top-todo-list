@@ -40,6 +40,9 @@ export default function buildSidebar() {
   const selectSortButton = document.querySelector(".sort-button-projects");
   const projects = getAllProjects();
 
-  sortButton(selectSortButton, projects);
+  selectSortButton.addEventListener("click", function () {
+    sortButton(selectSortButton, projects);
+  });
+
   createNewProjectButton();
 }

@@ -1,8 +1,9 @@
 import renderProjectItem from "./render-projects-sidebar";
+import renderToDoListItems from "./render-to-do-list-items";
 
-export default function sortButton(selectSortButton, projects) {
-  let sortOption = 0; // 0: Sort by name, 1: Sort by date, 2: Sort by priority
+let sortOption = 0; // 0: Sort by name, 1: Sort by date, 2: Sort by priority
 
+export default function sortButton(selectSortButton, array) {
   const sortOptions = [
     { label: "Sort by: Name", compare: (a, b) => a.name.localeCompare(b.name) },
     {
@@ -25,25 +26,40 @@ export default function sortButton(selectSortButton, projects) {
 
   selectSortButton.textContent = sortOptions[sortOption].label; // Set initial button text
 
-  selectSortButton.addEventListener("click", function () {
-    sortOption = (sortOption + 1) % sortOptions.length;
+  sortOption = (sortOption + 1) % sortOptions.length;
 
-    // Sort the projects array based on the selected option
-    projects.sort(sortOptions[sortOption].compare);
+  console.log(sortOption);
 
-    selectSortButton.textContent = sortOptions[sortOption].label; // Change button text
+  // Sort the array based on the selected option
+  array.sort(sortOptions[sortOption].compare);
 
+  selectSortButton.textContent = sortOptions[sortOption].label; // Change button text
+
+  if (selectSortButton.classList.contains("sort-button-projects")) {
     // Clear the sidebar
     const selectProjectContainer = document.querySelector(".project-container");
     selectProjectContainer.innerHTML = "";
 
     // Re-render the sorted projects using the provided renderProjectItem function
-    for (const project of projects) {
-      const newProjectItem = renderProjectItem(project); // Pass the project data to the function
+    for (const project of array) {
+      const newProjectArray = renderProjectItem(project); // Pass the project data to the function
 
       // Set the text color for the project name here
-      const selectProjectName = newProjectItem.querySelector(".project-name");
+      const selectProjectName = newProjectArray.querySelector(".project-name");
       selectProjectName.style.color = "white"; // This ensures the project name color remains white
     }
-  });
+  } else {
+    // Clear the to-do list
+    const selectToDoList = document.querySelector("#main");
+    selectToDoList.innerHTML = "";
+
+    // Re-render the sorted to-do list items
+    for (const item of array) {
+      const newItemArray = renderToDoListItems(item);
+
+      // Set the text color for the project name here
+      const selectItemName = newItemArray.querySelector(".item-name");
+      selectItemName.style.color = "white"; // This ensures the project name color remains white
+    }
+  }
 }
