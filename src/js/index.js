@@ -3,12 +3,14 @@ import buildHeader from "../components/header";
 import buildToolbar from "../components/toolbar";
 import buildSidebar from "../components/sidebar";
 import createToDoListItem from "../modules/create-to-do-list-item";
+import loadProjectsFromLocalStorage from "../modules/load-projects";
 
 function buildPage() {
   buildHeader();
   buildToolbar();
   buildSidebar();
   createToDoListItem();
+  loadProjectsFromLocalStorage();
 
   // Get the elements
   const mainElement = document.querySelector("#main");
