@@ -12,6 +12,15 @@ export default function deleteProject(deleteButton) {
       const projectId = parseInt(
         projectItem.getAttribute("data-project-index")
       );
+
+      // Ask for confirmation before deleting the project
+      const confirmDelete = confirm(
+        "Are you sure you want to delete this project?"
+      );
+      if (!confirmDelete) {
+        return; // Abort deletion if user cancels
+      }
+
       // Remove the project item from the sidebar
       projectItem.remove();
       // Remove the associated project object from the array
