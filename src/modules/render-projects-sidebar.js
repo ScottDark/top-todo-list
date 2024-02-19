@@ -8,6 +8,11 @@ export default function renderProjectItem(latestProject) {
   // Use the project's ID as the data attribute
   const projectContainerClass = `project-name-${latestProject.id}`;
 
+  // Check if the project has already been rendered
+  if (document.querySelector(`.${projectContainerClass}`)) {
+    return;
+  }
+
   // Determine the text color based on the project's priority
   let nameColor = "white"; // Default color
 
