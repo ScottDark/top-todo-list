@@ -28,14 +28,18 @@ export default function sortButton(selectSortButton, array) {
 
   sortOption = (sortOption + 1) % sortOptions.length;
 
-  console.log(sortOption);
-
   // Sort the array based on the selected option
   array.sort(sortOptions[sortOption].compare);
 
   selectSortButton.textContent = sortOptions[sortOption].label; // Change button text
 
   if (selectSortButton.classList.contains("sort-button-projects")) {
+    const currentlySelectedProject =
+      document.querySelector(".selected-project");
+
+    const currentlySelectedProjectID =
+      currentlySelectedProject.getAttribute("data-project-index");
+
     // Clear the sidebar
     const selectProjectContainer = document.querySelector(".project-container");
     selectProjectContainer.innerHTML = "";
@@ -48,6 +52,17 @@ export default function sortButton(selectSortButton, array) {
       const selectProjectName = newProjectArray.querySelector(".project-name");
       selectProjectName.style.color = "white"; // This ensures the project name color remains white
     }
+
+    const selectPreviouslySelectedProject = document.querySelector(
+      `[data-project-index="${currentlySelectedProjectID}"]`
+    );
+
+    // Add the selected class to the previously selected project
+    selectPreviouslySelectedProject.classList.add(
+      "selected-project",
+      "border-primary",
+      "rounded"
+    );
   } else {
     // Clear the to-do list
     const selectToDoList = document.querySelector("#main");
