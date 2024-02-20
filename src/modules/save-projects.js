@@ -1,15 +1,19 @@
-import { addObserver, getAllProjects } from "./project-manager";
+import { getAllProjects } from "./project-manager";
 
 const saveProjectsToJson = () => {
   const projects = getAllProjects();
-  const json = JSON.stringify(projects);
-  localStorage.setItem("projects", json);
-};
+  const storedProjects = JSON.parse(localStorage.getItem("projects")) || [];
 
-const saveProjectsObserver = {
-  update: saveProjectsToJson,
-};
+  // Check if any project names have changed
+  const hasChanges = projects.some((project, index) => {
+    const storedProject = storedProjects[index];
+    return !storedProject || storedProject.name !== project.name;
+  });
 
-addObserver(saveProjectsObserver);
+  if (hasChanges) {
+    const json = JSON.stringify(projects);
+    localStorage.setItem("projects", json);
+  }
+};
 
 export { saveProjectsToJson };

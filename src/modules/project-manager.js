@@ -1,5 +1,11 @@
+import { saveProjectsToJson } from "./save-projects";
+
 const projects = [];
 const observers = [];
+
+const saveProjectsObserver = {
+  update: saveProjectsToJson,
+};
 
 export function addProject(project) {
   project.id = projects.length;
@@ -32,7 +38,7 @@ export function removeObserver(observer) {
   }
 }
 
-function notifyObservers() {
+export function notifyObservers() {
   observers.forEach((observer) => {
     if (typeof observer.update === "function") {
       observer.update(projects);
@@ -41,3 +47,6 @@ function notifyObservers() {
     }
   });
 }
+
+// Observer pattern list
+addObserver(saveProjectsObserver);
