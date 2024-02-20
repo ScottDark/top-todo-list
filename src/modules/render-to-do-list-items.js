@@ -76,8 +76,6 @@ export default function renderToDoListItems(latestItem) {
   newItem.appendChild(newDivDropdown);
 
   // Now that the elements have been appended to newItem, you can select them
-  const selectDivDropDown = newItem.querySelector(".dropdown");
-  const selectItemName = newItem.querySelector(".item-name");
   createPriorityDropdown(latestItem, "item-name");
 
   // Delete button
