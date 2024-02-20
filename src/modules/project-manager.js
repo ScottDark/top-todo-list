@@ -33,5 +33,11 @@ export function removeObserver(observer) {
 }
 
 function notifyObservers() {
-  observers.forEach((observer) => observer.update(projects));
+  observers.forEach((observer) => {
+    if (typeof observer.update === "function") {
+      observer.update(projects);
+    } else {
+      console.error("Observer does not have an update method:", observer);
+    }
+  });
 }
