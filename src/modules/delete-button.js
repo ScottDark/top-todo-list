@@ -1,4 +1,8 @@
-import { removeProjectById, getAllProjects } from "./project-manager";
+import {
+  removeProjectById,
+  getAllProjects,
+  notifyObservers,
+} from "./project-manager";
 import HeaderManager from "./header-manager";
 
 export default function deleteProject(deleteButton) {
@@ -55,6 +59,7 @@ export default function deleteProject(deleteButton) {
 
       // Remove the todo list item
       toDoListItem.remove();
+      notifyObservers();
     }
   });
 }
