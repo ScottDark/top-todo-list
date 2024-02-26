@@ -4,6 +4,7 @@ import createPriorityDropdown from "./create-priority-dropdown";
 import deleteProject from "./delete-button";
 import selectProjectBorder from "./select-project-border";
 import populateHeaderListener from "./populate-header";
+import loadTodolist from "./load-todolist";
 
 export default function renderProjectItem(latestProject) {
   // Use the project's ID as the data attribute
@@ -98,6 +99,7 @@ export default function renderProjectItem(latestProject) {
 
   newProjectItem.addEventListener("click", () => {
     selectProjectBorder(newProjectItem);
+    loadTodolist();
   });
 
   populateHeaderListener(newProjectItem, latestProject);
