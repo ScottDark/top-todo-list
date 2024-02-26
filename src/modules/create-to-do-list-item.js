@@ -1,6 +1,6 @@
 import itemConstructor from "./item-constructor";
 import renderToDoListItems from "./render-to-do-list-items";
-import { getAllProjects } from "./project-manager";
+import { getAllProjects, notifyObservers } from "./project-manager";
 
 export default function createToDoListItem() {
   const selectCreateNewItemButton = document.querySelector(
@@ -28,5 +28,6 @@ export default function createToDoListItem() {
     }
 
     renderToDoListItems(newItem);
+    notifyObservers();
   });
 }
