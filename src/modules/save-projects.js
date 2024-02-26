@@ -4,11 +4,15 @@ const saveProjectsToJson = () => {
   const projects = getAllProjects();
   const storedProjects = JSON.parse(localStorage.getItem("projects")) || [];
 
-  // Check if any project names have changed or if the number of projects has changed
+  // Check if any project names, priorities have changed or if the number of projects has changed
   const hasChanges =
     projects.some((project, index) => {
       const storedProject = storedProjects[index];
-      return !storedProject || storedProject.name !== project.name;
+      return (
+        !storedProject ||
+        storedProject.name !== project.name ||
+        storedProject.priority !== project.priority
+      );
     }) || projects.length !== storedProjects.length;
 
   if (hasChanges) {

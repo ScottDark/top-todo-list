@@ -3,7 +3,7 @@ import { addProject } from "./project-manager";
 
 let projectCounter = 0; // Initialize a counter to generate unique IDs
 
-export default function projectConstructor() {
+function projectConstructor() {
   this.id = projectCounter++; // Assign a unique ID
   this.name = "Project Name";
   this.priority = "*";
@@ -24,6 +24,9 @@ export default function projectConstructor() {
       this.todoList.splice(index, 1);
     }
   };
+
   // Add project to array of projects.
   addProject(this);
 }
+
+export default projectConstructor;

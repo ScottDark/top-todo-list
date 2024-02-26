@@ -13,14 +13,18 @@ export default function createToDoListItem() {
     // Get the currently selected project element
     const selectedProjectElement = document.querySelector(".selected-project");
 
-    // Get the project's id from the data attribute
-    const projectId = selectedProjectElement.getAttribute("data-project-index");
+    // Get the project's id from the data attribute and convert it to a number
+    const projectId = Number(
+      selectedProjectElement.getAttribute("data-project-index")
+    );
 
     const project = getAllProjects()[projectId];
-    if (project) {
-      project.addTodoItem(newItem);
-    } else {
+    if (!project) {
       console.error(`Project with id ${projectId} not found`);
+    } else if (typeof project.addTodoItem !== "function") {
+      console.error(`addTodoItem is not a function on the project object`);
+    } else {
+      project.addTodoItem(newItem);
     }
 
     renderToDoListItems(newItem);

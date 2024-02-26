@@ -1,4 +1,5 @@
 import { saveProjectsToJson } from "./save-projects";
+import { saveTodoListToJson } from "./save-todolist";
 
 const projects = [];
 const observers = [];
@@ -7,10 +8,17 @@ const saveProjectsObserver = {
   update: saveProjectsToJson,
 };
 
+const saveTodoListObserver = {
+  update: saveTodoListToJson,
+};
+
 export function addProject(project) {
-  project.id = projects.length;
-  projects.push(project);
-  notifyObservers();
+  const existingProject = projects.find((p) => p.id === project.id);
+  if (!existingProject) {
+    project.id = projects.length;
+    projects.push(project);
+    notifyObservers();
+  }
 }
 
 export function getAllProjects() {
@@ -50,3 +58,4 @@ export function notifyObservers() {
 
 // Observer pattern list
 addObserver(saveProjectsObserver);
+addObserver(saveTodoListObserver);

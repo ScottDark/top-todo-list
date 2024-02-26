@@ -1,5 +1,6 @@
 import createTextElement from "./create-textElement";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import { notifyObservers } from "./project-manager";
 
 export default function createPriorityDropdown(entity, entityType) {
   // Create the dropdown button
@@ -79,6 +80,8 @@ export default function createPriorityDropdown(entity, entityType) {
 
       // Update the dropdown button text to the selected priority
       createDropdownButton.textContent = entity.priority;
+
+      notifyObservers();
     });
   });
 

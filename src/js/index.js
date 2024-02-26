@@ -19,11 +19,7 @@ function buildPage() {
     const loadedProjects = loadProjectsFromLocalStorage();
     loadedProjects.forEach((project) => {
       addProject(project);
-
-      // Render each project to the sidebar
-      loadedProjects.forEach((project) => {
-        renderProjectItem(project);
-      });
+      renderProjectItem(project);
     });
   });
 
