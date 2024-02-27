@@ -5,6 +5,7 @@ import deleteProject from "./delete-button";
 import selectProjectBorder from "./select-project-border";
 import populateHeaderListener from "./populate-header";
 import loadTodolist from "./load-todolist";
+import { notifyObservers } from "./project-manager";
 
 export default function renderProjectItem(latestProject) {
   // Use the project's ID as the data attribute
@@ -103,6 +104,8 @@ export default function renderProjectItem(latestProject) {
   });
 
   populateHeaderListener(newProjectItem, latestProject);
+
+  notifyObservers();
 
   return newProjectItem; // Return the newly created project item
 }
