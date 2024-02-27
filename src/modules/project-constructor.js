@@ -1,17 +1,14 @@
 import { format } from "date-fns";
 import { addProject } from "./project-manager";
 
-let projectCounter = 0; // Initialize a counter to generate unique IDs
-
 function projectConstructor() {
-  this.id = projectCounter++; // Assign a unique ID
+  this.id = Date.now();
   this.name = "Project Name";
   this.priority = "*";
   this.todoList = [];
 
   const currentDate = new Date();
-  currentDate.setSeconds(projectCounter); // Add seconds to the date
-  const formattedDate = format(currentDate, "MMMM dd, yyyy HH:mm:ss"); // Include seconds in the format
+  const formattedDate = format(currentDate, "MMMM dd, yyyy hh:mm:ss a"); // Include seconds in the format
   this.dateCreated = formattedDate;
 
   projectConstructor.prototype.addTodoItem = function (item) {

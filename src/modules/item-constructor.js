@@ -1,10 +1,8 @@
 import { format } from "date-fns";
 import { utcToZonedTime } from "date-fns-tz";
 
-let itemCounter = 0; //Counter to generate unique ID for each item
-
 export default function itemConstructor() {
-  this.id = itemCounter++;
+  this.id = Date.now();
   this.name = "To do list item";
   this.priority = "*";
 
